@@ -3,15 +3,19 @@ package ua.orlov.fintechtransaction.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
-import java.sql.Timestamp;
+import java.time.OffsetDateTime;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Table("transactions")
 public class Transaction {
 
+    @Id
     private Long id;
 
     private String userId;
@@ -20,7 +24,7 @@ public class Transaction {
 
     private String description;
 
-    private Timestamp timestamp;
+    private OffsetDateTime timestamp;
 
     private Category category;
 }

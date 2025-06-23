@@ -6,6 +6,8 @@ import ua.orlov.fintechtransaction.model.Transaction;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.ZoneOffset;
 
 public class TransactionRowMapper implements RowMapper<Transaction> {
     @Override
@@ -15,7 +17,14 @@ public class TransactionRowMapper implements RowMapper<Transaction> {
         transaction.setUserId(rs.getString("user_id"));
         transaction.setAmount(rs.getBigDecimal("amount"));
         transaction.setDescription(rs.getString("description"));
-        transaction.setTimestamp(rs.getTimestamp("timestamp"));
+
+        Timestamp sqlTimestamp = rs.getTimestamp("timestamp");
+        if (sqlTimestamp != null) {
+            transaction.setTimestamp(sqlTimestamp.toInstant().atOffset(ZoneOffset.UTC));
+        } else {
+            transaction.setTimestamp(null);
+        }
+
         transaction.setCategory(rs.getObject("category", Category.class));
 
         return transaction;

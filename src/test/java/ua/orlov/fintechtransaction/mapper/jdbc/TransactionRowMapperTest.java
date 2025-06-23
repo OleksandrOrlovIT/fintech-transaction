@@ -12,6 +12,7 @@ import java.math.BigDecimal;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.OffsetDateTime;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -36,7 +37,7 @@ class TransactionRowMapperTest {
         BigDecimal expectedAmount = new BigDecimal("100.50");
         String expectedDescription = "Groceries from local store";
         Timestamp sqlTimestamp = Timestamp.valueOf("2023-10-26 10:30:00.000");
-        Timestamp expectedTimestamp = Timestamp.valueOf("2023-10-26 10:30:00.000");
+        OffsetDateTime expectedTimestamp = OffsetDateTime.parse("2023-10-26T08:30Z");
         Category expectedCategory = Category.FOOD;
 
         when(mockResultSet.getLong("id")).thenReturn(expectedId);
@@ -56,7 +57,6 @@ class TransactionRowMapperTest {
         assertEquals(expectedTimestamp, actualTransaction.getTimestamp(), "Timestamp should match (including offset)");
         assertEquals(expectedCategory, actualTransaction.getCategory(), "Category should match");
 
-        // Optional: Verify that ResultSet methods were called as expected
         verify(mockResultSet).getLong("id");
         verify(mockResultSet).getString("user_id");
         verify(mockResultSet).getBigDecimal("amount");
