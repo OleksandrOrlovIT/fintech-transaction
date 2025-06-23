@@ -1,1 +1,0 @@
-docker run --name fintechdb-container -e POSTGRES_DB=fintechDB -e POSTGRES_USER=fintechuser -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres:latest

@@ -1,0 +1,15 @@
+version: '3.8' # Use a recent Docker Compose file format version
+
+services:
+  fintechdb:
+    image: postgres:latest
+    container_name: fintechdb-container
+    restart: always
+    environment:
+      POSTGRES_DB: fintechDB
+      POSTGRES_USER: fintechuser
+      POSTGRES_PASSWORD: mysecretpassword
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./src/main/resources/init.sql:/docker-entrypoint-initdb.d/init.sql
