@@ -24,6 +24,4 @@ public class CreateTransactionRequest {
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX", shape = JsonFormat.Shape.STRING)
     private OffsetDateTime timestamp;
 
-    private String category;
-
 }

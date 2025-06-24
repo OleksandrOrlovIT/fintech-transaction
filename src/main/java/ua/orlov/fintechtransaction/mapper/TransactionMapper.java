@@ -14,7 +14,7 @@ public class TransactionMapper {
         transaction.setAmount(request.getAmount());
         transaction.setDescription(request.getDescription());
         transaction.setTimestamp(request.getTimestamp());
-        transaction.setCategory(Category.fromString(request.getCategory()));
+        transaction.setCategory(Category.fromDescription(request.getDescription()));
 
         return transaction;
     }

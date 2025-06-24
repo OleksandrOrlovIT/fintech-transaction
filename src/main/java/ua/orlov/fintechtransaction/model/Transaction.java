@@ -27,4 +27,16 @@ public class Transaction {
     private OffsetDateTime timestamp;
 
     private Category category;
+
+    @Override
+    public String toString() {
+        return "Transaction{" +
+                "id=" + id +
+                ", userId='" + userId + '\'' +
+                ", amount=" + amount +
+                ", description='" + description + '\'' +
+                ", timestamp=" + timestamp +
+                ", category=" + category +
+                '}';
+    }
 }
