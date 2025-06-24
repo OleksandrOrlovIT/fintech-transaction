@@ -25,4 +25,12 @@ public enum Category {
 
         return category;
     }
+
+    public static Category fromString(String inputString) {
+        return switch (inputString.toLowerCase()) {
+            case "food" -> FOOD;
+            case "transport" -> TRANSPORT;
+            default -> UNCATEGORIZED;
+        };
+    }
 }

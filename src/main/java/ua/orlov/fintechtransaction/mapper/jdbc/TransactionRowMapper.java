@@ -1,6 +1,7 @@
 package ua.orlov.fintechtransaction.mapper.jdbc;
 
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 import ua.orlov.fintechtransaction.model.Category;
 import ua.orlov.fintechtransaction.model.Transaction;
 
@@ -9,6 +10,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.ZoneOffset;
 
+@Component
 public class TransactionRowMapper implements RowMapper<Transaction> {
     @Override
     public Transaction mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -25,7 +27,7 @@ public class TransactionRowMapper implements RowMapper<Transaction> {
             transaction.setTimestamp(null);
         }
 
-        transaction.setCategory(rs.getObject("category", Category.class));
+        transaction.setCategory(Category.fromString(rs.getObject("category", String.class)));
 
         return transaction;
     }
